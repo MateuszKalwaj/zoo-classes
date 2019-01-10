@@ -8,7 +8,7 @@ public class Iguana extends Lizard implements PlantEater {
     public void eatPlant() {
         System.out.println(getName() + " is eating plants!");
     }
-
+    //Iguana can hiss
     public void hiss() {
         System.out.println(getName() + " is hissing.");
     }

@@ -1,4 +1,4 @@
-package pl.mk.animals_homework;
+package pl.mk.animals_homework.models;
 
 public abstract class Animal {
 

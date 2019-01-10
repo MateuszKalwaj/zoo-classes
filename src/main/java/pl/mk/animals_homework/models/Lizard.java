@@ -1,7 +1,5 @@
 package pl.mk.animals_homework.models;
 
-import pl.mk.animals_homework.Animal;
-
 public abstract class Lizard extends Animal {
 
     private String scaleColor;

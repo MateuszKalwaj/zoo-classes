@@ -8,7 +8,7 @@ public class Wolf extends Mammal implements MeatEater {
     public void eatMeat() {
         System.out.println(getName() + " is eating meat.");
     }
-
+    // wolf can howl
     public void howling () {
         System.out.println(getName() + " is howling!");
     }
