@@ -3,11 +3,9 @@ package pl.mk.animals_homework;
 import pl.mk.animals_homework.Intefaces.MeatEater;
 import pl.mk.animals_homework.Intefaces.PlantEater;
 import pl.mk.animals_homework.models.*;
+import sun.plugin.viewer.context.IExplorerAppletContext;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class AnimalsMain {
     /**
@@ -22,10 +20,14 @@ public class AnimalsMain {
         Animal[] zoo;
 
         //path for saving text files
-        String filePath = "/zoo_copy.txt";
+        String filePath = "/forFiles/zoo_copy.txt";
+
+        //path for saving binary files
+        String binaryPath = "/forFiles/BinaryZoo.txt";
 
         while (true) {
             zoo = load();
+            System.out.println("\n");
             printZoo(zoo);
             feedAllAnimals(zoo);
             feedAllMeatEaters(zoo);
@@ -33,6 +35,8 @@ public class AnimalsMain {
             howlAll(zoo);
             hissAll(zoo);
             tweetAll(zoo);
+            saveBinaryAnimals(binaryPath,zoo);
+            loadBinaryAnimals(binaryPath);
             save(filePath, zoo);
             break;
         }
@@ -168,7 +172,7 @@ public class AnimalsMain {
 
     /**
      * Print all animals
-     * @param animals animals array
+     * @param animals is the animals array
      */
     private static void printZoo(Animal[] animals) {
         for (int i = 0; i < animals.length; i++) {
@@ -195,6 +199,10 @@ public class AnimalsMain {
         }
     }
 
+    /**
+     * *Feed* methods are for feeding the animals
+     * @param animals is the animal array
+     */
     private static void feedAllAnimals (Animal [] animals) {
         System.out.println("\n I am now feeding all animals in the zoo. \n");
         for( Animal animal : animals) {
@@ -220,6 +228,10 @@ public class AnimalsMain {
         }
     }
 
+    /**
+     * methods for howling, hissing and tweeting
+     * @param animals is the animal array
+     */
     private static void howlAll (Animal[] animals) {
         System.out.println("\n Animals howl \n");
         for (Animal animal : animals) {
@@ -246,6 +258,31 @@ public class AnimalsMain {
             }
         }
         System.out.println("\n");
+    }
+
+    /**
+     * Methods for save and load binary files
+     * @param file is the file path
+     * @param animals is the animal array
+     */
+
+    private static void saveBinaryAnimals (String file, Animal[] animals) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file);
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+            objectOutputStream.writeObject(animals);
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+
+    private static Animal[] loadBinaryAnimals (String file) {
+        try (FileInputStream fileInputStream = new FileInputStream(file);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+            return (Animal[]) objectInputStream.readObject();
+        }catch (IOException | ClassNotFoundException e) {
+            System.err.println(e);
+            return null;
+        }
     }
 }
 
