@@ -4,11 +4,11 @@ public abstract class Bird extends Animal {
 
     private String featherColor;
 
-    public String getScaleColor() {
+    public String getFeatherColor() {
         return featherColor;
     }
 
-    public void setScaleColor(String scaleColor) {
+    public void setFeatherColor(String scaleColor) {
         this.featherColor = scaleColor;
     }
 

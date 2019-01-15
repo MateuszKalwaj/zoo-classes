@@ -14,4 +14,8 @@ public class Wolf extends Mammal implements MeatEater {
     }
 
 
+    @Override
+    public void eat() {
+        eatMeat();
+    }
 }

@@ -4,11 +4,11 @@ public abstract class Lizard extends Animal {
 
     private String scaleColor;
 
-    public String getFeatherColor() {
+    public String getscaleColor() {
         return scaleColor;
     }
 
-    public void setFeatherColor(String featherColor) {
+    public void setscaleColor(String featherColor) {
         this.scaleColor = featherColor;
     }
 

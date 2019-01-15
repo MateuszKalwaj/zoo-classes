@@ -2,6 +2,7 @@ package pl.mk.animals_homework.models;
 
 public abstract class Mammal extends Animal {
 
+    private String furColor;
     public String getFurColor() {
         return furColor;
     }
@@ -9,8 +10,6 @@ public abstract class Mammal extends Animal {
     public void setFurColor(String furColor) {
         this.furColor = furColor;
     }
-
-    String furColor;
 
 
     @Override
