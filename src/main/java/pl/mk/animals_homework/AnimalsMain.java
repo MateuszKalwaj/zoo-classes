@@ -1,5 +1,7 @@
 package pl.mk.animals_homework;
 
+import pl.mk.animals_homework.Intefaces.MeatEater;
+import pl.mk.animals_homework.Intefaces.PlantEater;
 import pl.mk.animals_homework.models.*;
 
 import java.io.BufferedReader;
@@ -25,6 +27,9 @@ public class AnimalsMain {
         while (true) {
             zoo = load();
             printZoo(zoo);
+            feedAllAnimals(zoo);
+            feedAllMeatEaters(zoo);
+            feedAllPlantEaters(zoo);
             save(filePath, zoo);
             break;
         }
@@ -183,6 +188,31 @@ public class AnimalsMain {
                 System.out.println("color of feathers: " + ((Bird) animals[i]).getFeatherColor());
             }else if (animals[i] instanceof Lizard) {
                 System.out.println("color of scale: " + ((Lizard) animals[i]).getscaleColor());
+            }
+        }
+    }
+
+    private static void feedAllAnimals (Animal [] animals) {
+        System.out.println("\n I am now feeding all animals in the zoo. \n");
+        for( Animal animal : animals) {
+            animal.eat();
+        }
+    }
+
+    private static void feedAllMeatEaters (Animal[] animals) {
+        System.out.println("\n I am now feeding all meat eaters. \n");
+        for (Animal animal : animals) {
+            if (animal instanceof MeatEater) {
+                ((MeatEater)animal).eatMeat();
+            }
+        }
+    }
+
+    private static void feedAllPlantEaters (Animal[] animals) {
+        System.out.println("\n I am now feeding all plant eaters. \n");
+        for (Animal animal : animals) {
+            if (animal instanceof PlantEater) {
+                ((PlantEater)animal).eatPlant();
             }
         }
     }
