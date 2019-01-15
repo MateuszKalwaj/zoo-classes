@@ -30,6 +30,9 @@ public class AnimalsMain {
             feedAllAnimals(zoo);
             feedAllMeatEaters(zoo);
             feedAllPlantEaters(zoo);
+            howlAll(zoo);
+            hissAll(zoo);
+            tweetAll(zoo);
             save(filePath, zoo);
             break;
         }
@@ -215,6 +218,34 @@ public class AnimalsMain {
                 ((PlantEater)animal).eatPlant();
             }
         }
+    }
+
+    private static void howlAll (Animal[] animals) {
+        System.out.println("\n Animals howl \n");
+        for (Animal animal : animals) {
+            if (animal instanceof Wolf) {
+                ((Wolf) animal).howl();
+            }
+        }
+    }
+
+    private static void hissAll (Animal[] animals) {
+        System.out.println("\n Animals hiss \n");
+        for (Animal animal : animals) {
+            if (animal instanceof Iguana) {
+                ((Iguana) animal).hiss();
+            }
+        }
+    }
+
+    private static void tweetAll (Animal[] animals) {
+        System.out.println("\n Animals tweet \n");
+        for (Animal animal : animals) {
+            if (animal instanceof Parrot) {
+                ((Parrot) animal).tweet();
+            }
+        }
+        System.out.println("\n");
     }
 }
 
