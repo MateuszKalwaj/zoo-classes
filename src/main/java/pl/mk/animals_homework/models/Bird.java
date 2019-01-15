@@ -1,5 +1,7 @@
 package pl.mk.animals_homework.models;
 
+import java.io.Serializable;
+
 public abstract class Bird extends Animal {
 
     private String featherColor;

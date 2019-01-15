@@ -3,7 +3,6 @@ package pl.mk.animals_homework;
 import pl.mk.animals_homework.Intefaces.MeatEater;
 import pl.mk.animals_homework.Intefaces.PlantEater;
 import pl.mk.animals_homework.models.*;
-import sun.plugin.viewer.context.IExplorerAppletContext;
 
 import java.io.*;
 
@@ -14,20 +13,21 @@ public class AnimalsMain {
      * @param args supplies command-line arguments as an array of String object
      */
     public static void main(String[] args) {
-        System.out.println("Welcome to the ZOO");
+        System.out.println("Welcome to the ZOO!");
 
         //new created animal array
         Animal[] zoo;
 
         //path for saving text files
-        String filePath = "/forFiles/zoo_copy.txt";
+        String filePath = "zoo100.txt";
 
         //path for saving binary files
-        String binaryPath = "/forFiles/BinaryZoo.txt";
+        String binaryPath = "zooBinary";
 
         while (true) {
             zoo = load();
-            System.out.println("\n");
+            save(filePath, zoo);
+            System.out.println();
             printZoo(zoo);
             feedAllAnimals(zoo);
             feedAllMeatEaters(zoo);
@@ -36,8 +36,8 @@ public class AnimalsMain {
             hissAll(zoo);
             tweetAll(zoo);
             saveBinaryAnimals(binaryPath,zoo);
-            loadBinaryAnimals(binaryPath);
-            save(filePath, zoo);
+            zoo = loadBinaryAnimals(binaryPath);
+            printZoo(zoo);
             break;
         }
     }
@@ -49,7 +49,7 @@ public class AnimalsMain {
     //method which should load text file to program
     private static Animal[] load() {
 
-        String file = "C:\\Users\\Mateusz\\IdeaProjects\\Animals_homework\\zoo.txt";
+        String file = "zoo.txt";
 
         try (FileReader fr = new FileReader(file);
              BufferedReader br = new BufferedReader(fr)) {
@@ -107,7 +107,7 @@ public class AnimalsMain {
                     ((Lizard) animal).setscaleColor(animalColor);
                 }
                 //prints lines from text file
-                System.out.println(i + " " + animal.getName() + " " + animal.getAge());
+                //System.out.println(i + " " + animal.getName() + " " + animal.getAge());
             }
 
             return zoo;
@@ -137,16 +137,13 @@ public class AnimalsMain {
                 //set how animals should be saved
                 if (animals[i] instanceof Wolf) {
                     String species = "Wolf";
-                    fw.write(species);
-                    System.out.println(" ");
+                    fw.write(species + "\n");
                 } else if (animals[i] instanceof Parrot) {
                     String species = "Parrot";
-                    fw.write(species);
-                    System.out.println(" ");
+                    fw.write(species + "\n");
                 } else if (animals[i] instanceof Iguana) {
                     String species = "Iguana";
-                    fw.write(species);
-                    System.out.println(" ");
+                    fw.write(species + "\n");
                 }
 
                 //write animals using their names
@@ -176,8 +173,8 @@ public class AnimalsMain {
      */
     private static void printZoo(Animal[] animals) {
         for (int i = 0; i < animals.length; i++) {
-            System.out.println((i + 1) + " Animals in the zoo are: " +
-                    animals[i].getName() + ", which has " +
+            System.out.println((i + 1) + " Animal in the zoo is: " +
+                    animals[i].getName() + ", which is " +
                     animals[i].getAge() + " years old.");
 
             //prints what species is the animal
@@ -204,14 +201,14 @@ public class AnimalsMain {
      * @param animals is the animal array
      */
     private static void feedAllAnimals (Animal [] animals) {
-        System.out.println("\n I am now feeding all animals in the zoo. \n");
+        System.out.println("\n I am now feeding all animals in the zoo: \n");
         for( Animal animal : animals) {
             animal.eat();
         }
     }
 
     private static void feedAllMeatEaters (Animal[] animals) {
-        System.out.println("\n I am now feeding all meat eaters. \n");
+        System.out.println("\n I am now feeding all meat eaters: \n");
         for (Animal animal : animals) {
             if (animal instanceof MeatEater) {
                 ((MeatEater)animal).eatMeat();
@@ -220,7 +217,7 @@ public class AnimalsMain {
     }
 
     private static void feedAllPlantEaters (Animal[] animals) {
-        System.out.println("\n I am now feeding all plant eaters. \n");
+        System.out.println("\n I am now feeding all plant eaters: \n");
         for (Animal animal : animals) {
             if (animal instanceof PlantEater) {
                 ((PlantEater)animal).eatPlant();
@@ -233,7 +230,7 @@ public class AnimalsMain {
      * @param animals is the animal array
      */
     private static void howlAll (Animal[] animals) {
-        System.out.println("\n Animals howl \n");
+        System.out.println("\n Animals that howls: \n");
         for (Animal animal : animals) {
             if (animal instanceof Wolf) {
                 ((Wolf) animal).howl();
@@ -242,7 +239,7 @@ public class AnimalsMain {
     }
 
     private static void hissAll (Animal[] animals) {
-        System.out.println("\n Animals hiss \n");
+        System.out.println("\n Animals that hisses: \n");
         for (Animal animal : animals) {
             if (animal instanceof Iguana) {
                 ((Iguana) animal).hiss();
@@ -251,7 +248,7 @@ public class AnimalsMain {
     }
 
     private static void tweetAll (Animal[] animals) {
-        System.out.println("\n Animals tweet \n");
+        System.out.println("\n Animals that tweets: \n");
         for (Animal animal : animals) {
             if (animal instanceof Parrot) {
                 ((Parrot) animal).tweet();

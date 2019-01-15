@@ -1,6 +1,8 @@
 package pl.mk.animals_homework.models;
 
-public abstract class Animal {
+import java.io.Serializable;
+
+public abstract class Animal implements Serializable {
 
     private String name;
     private int age;
