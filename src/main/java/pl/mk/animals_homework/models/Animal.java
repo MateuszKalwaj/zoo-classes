@@ -2,6 +2,9 @@ package pl.mk.animals_homework.models;
 
 public abstract class Animal {
 
+    private String name;
+    private int age;
+
     public String getName() {
         return name;
     }
@@ -18,8 +21,6 @@ public abstract class Animal {
         this.age = age;
     }
 
-    private String name;
-    private int age;
 
     public abstract void eat();
 

@@ -10,6 +10,7 @@ import java.io.IOException;
 public class AnimalsMain {
     /**
      * Main class
+     *
      * @param args supplies command-line arguments as an array of String object
      */
     public static void main(String[] args) {
@@ -19,17 +20,22 @@ public class AnimalsMain {
         Animal[] zoo;
 
         //path for saving text files
-        String filePath = "/zoo.txt";
+        String filePath = "/zoo_copy.txt";
 
         while (true) {
             zoo = load();
+            printZoo(zoo);
             save(filePath, zoo);
             break;
         }
     }
 
+    /**
+     * method to load the file
+     * @return an empty array in case of exception
+     */
     //method which should load text file to program
-    private static Animal[] load () {
+    private static Animal[] load() {
 
         String file = "C:\\Users\\Mateusz\\IdeaProjects\\Animals_homework\\zoo.txt";
 
@@ -43,7 +49,7 @@ public class AnimalsMain {
             //array create
             Animal[] zoo = new Animal[count];
 
-            for (int i = 0; i<count; i++) {
+            for (int i = 0; i < count; i++) {
 
                 //Read animal species
                 String animalSpecies = br.readLine();
@@ -51,11 +57,11 @@ public class AnimalsMain {
                 //Create new animal
                 Animal animal = null;
 
-                if ("Wolf".equals(animalSpecies)){
+                if ("Wolf".equals(animalSpecies)) {
                     animal = new Wolf();
-                } else if ("Parrot".equals(animalSpecies)){
+                } else if ("Parrot".equals(animalSpecies)) {
                     animal = new Parrot();
-                } else if ("Iguana".equals(animalSpecies)){
+                } else if ("Iguana".equals(animalSpecies)) {
                     animal = new Iguana();
                 } else {
 
@@ -81,7 +87,7 @@ public class AnimalsMain {
                 String animalColor = br.readLine();
 
                 //Set animal color according to species
-                if (animal instanceof Wolf){
+                if (animal instanceof Wolf) {
                     ((Mammal) animal).setFurColor(animalColor);
                 } else if (animal instanceof Parrot) {
                     ((Bird) animal).setFeatherColor(animalColor);
@@ -102,8 +108,12 @@ public class AnimalsMain {
         }
     }
 
-    private static void save (String file, Animal[] animals) {
-        System.out.println("Enter the path to save the file");
+    /**
+     *
+     * @param file is the path to save the file
+     * @param animals is new animal array
+     */
+    private static void save(String file, Animal[] animals) {
 
         try (FileWriter fw = new FileWriter(file)) {
 
@@ -134,7 +144,7 @@ public class AnimalsMain {
                 fw.write(animals[i].getAge());
 
                 //write animals using their color
-                if (animals[i] instanceof Wolf){
+                if (animals[i] instanceof Wolf) {
                     fw.write(((Wolf) animals[i]).getFurColor());
                 } else if (animals[i] instanceof Parrot) {
                     fw.write(((Parrot) animals[i]).getFeatherColor());
@@ -147,4 +157,35 @@ public class AnimalsMain {
             System.err.println(e);
         }
     }
+
+    /**
+     * Print all animals
+     * @param animals animals array
+     */
+    private static void printZoo(Animal[] animals) {
+        for (int i = 0; i < animals.length; i++) {
+            System.out.println((i + 1) + " Animals in the zoo are: " +
+                    animals[i].getName() + ", which has " +
+                    animals[i].getAge() + " years old.");
+
+            //prints what species is the animal
+            if (animals[i] instanceof Wolf) {
+                System.out.println("belongs to species of wolfs");
+            } else if (animals[i] instanceof Parrot) {
+                System.out.println("belongs to species of parrots");
+            } else if (animals[i] instanceof Iguana) {
+                System.out.println("belongs to species of iguana");
+            }
+            //prints what color is animal
+            if (animals[i] instanceof Mammal) {
+                System.out.println("color of fur: " + ((Mammal) animals[i]).getFurColor());
+            }else if (animals[i] instanceof Bird) {
+                System.out.println("color of feathers: " + ((Bird) animals[i]).getFeatherColor());
+            }else if (animals[i] instanceof Lizard) {
+                System.out.println("color of scale: " + ((Lizard) animals[i]).getscaleColor());
+            }
+        }
+    }
 }
+
+
