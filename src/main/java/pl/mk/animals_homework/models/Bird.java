@@ -14,8 +14,4 @@ public abstract class Bird extends Animal {
         this.featherColor = scaleColor;
     }
 
-    @Override
-    public void eat() {
-
-    }
 }

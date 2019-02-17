@@ -14,8 +14,5 @@ public abstract class Mammal extends Animal {
     }
 
 
-    @Override
-    public void eat() {
 
-    }
 }
